@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/ea47/Documents/Calvin-Teaching/class-25sp-cs112",
+      "program": "/Users/ea47/Documents/Calvin-Teaching/class-25sp-cs112/build/Debug/outDebug"
+    }
+  ]
+}
