@@ -14,7 +14,7 @@ rm       = rm -f
 
 .PHONY: obj clean all
 
-all: $(TEST_TARGET)
+all: $(TEST_TARGET) clean_objs
 
 $(TEST_TARGET): obj tests.o
 	$(LINKER) $(TEST_TARGET) $(LFLAGS) $(OBJECTS) tests.o
@@ -24,6 +24,9 @@ $(TEST_TARGET): obj tests.o
 obj: $(SOURCES) $(INCLUDES) tests.cpp
 	$(CPP) $(CPPFLAGS) $(SOURCES) tests.cpp
 	@echo "Compilation complete!"
+
+clean_objs:
+	$(rm) $(OBJECTS) tests.o
 
 clean:
 	$(rm) $(TARGET) $(TEST_TARGET) $(OBJECTS) tests.o
