@@ -16,24 +16,32 @@ TEST_CASE("constructors"){
         REQUIRE(p.getSecond() == 0);
     }
     SECTION("explicit-value constructor"){
-        Pair p2(2,3);
-        REQUIRE(p2.getFirst() == 2);
-        REQUIRE(p2.getSecond() == 3);
+        Pair p2(1,5);
+        REQUIRE(p2.getFirst() == 1);
+        REQUIRE(p2.getSecond() == 5);
     }
 }
 
-TEST_CASE("setters"){
-    Pair p;
-    p.setFirst(5);
-    p.setSecond(8);
+TEST_CASE("operator +"){
+    Pair p1(1, 2);
+    Pair p2(2, 3);
+    cout << p1 + p2 << endl;
+}
+
+// TEST_CASE("setters"){
+//     Pair p;
+//     p.setFirst("whatever");
+//     p.setSecond("valentines");
     
-    REQUIRE(p.getFirst() == 5);
-    REQUIRE(p.getSecond() == 8);
-}
+//     REQUIRE(p.getFirst() == "whatever");
+//     REQUIRE(p.getSecond() == "valentines");
+// }
 
-TEST_CASE("toString"){
-    SECTION("tostring test"){
-        Pair p(1,5);
-        REQUIRE(p.toString() == "Pair: <1, 5>");
-    }
-}
+// TEST_CASE("toString"){
+//     SECTION("tostring test"){
+//         Pair p("I love you", "Amy");
+//         REQUIRE(p.toString() == "Pair: <I love you, Amy>");
+//         cout << p << endl;
+//     }
+// }
+

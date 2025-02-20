@@ -21,12 +21,16 @@ class Pair{
 
         // toString
         string toString() const;
-
-
-    private:
+        
+        Pair &operator+(Pair &p1);
+        
+        
+        private:
         Item myFirst;
         Item mySecond;
-
-};
+        
+    };
+    
+ostream &operator<<(ostream &out, const Pair &p);
 
 #endif
