@@ -1,4 +1,8 @@
 #include "PyList.h"
+#include <stdexcept>
+#include <iostream>
+
+using namespace std;
 
 
 // default constructor
@@ -11,18 +15,18 @@ PyList::PyList(){
 
 // explicit-value constructor
 PyList::PyList(unsigned size){
-    mySize = size;
-    myCapacity = 0;
-    myArray = new Item[mySize];
+    mySize = 0;
+    myCapacity = size;
+    myArray = new Item[myCapacity];
 }
 
 // copy constructor
 PyList::PyList(PyList & other){
     mySize = other.mySize;
     myCapacity = other.myCapacity;
-    if(mySize > 0){
-        myArray = new Item[mySize];
-        for(unsigned i = 0; i < myCapacity; i++){
+    if(myCapacity > 0){
+        myArray = new Item[myCapacity];
+        for(unsigned i = 0; i < mySize; i++){
             myArray[i] = other.myArray[i];
         }
     }
@@ -33,7 +37,8 @@ PyList::PyList(PyList & other){
 
 
 PyList::~PyList(){
-
+    delete []myArray;
+    cout << "I'm dyiiiiiiiiiing!!" << endl;
 }
 
 // getters
@@ -43,24 +48,65 @@ unsigned PyList::getSize() const{
 }
 
 void PyList::append(Item it){
-    if(myCapacity < mySize){
-        myArray[myCapacity] = it;
+    if(mySize < myCapacity){
+        myArray[mySize] = it;
     }
     else{
-        if(mySize == 0){
+        if(myCapacity == 0){
             myArray = new Item[1];
         }
         else{
-            Item *newArray = new Item[mySize+1];
-            for(unsigned i=0; i < myCapacity; i++){
+            Item *newArray = new Item[myCapacity+1];
+            for(unsigned i=0; i < mySize; i++){
                 newArray[i] = myArray[i];
             }
             delete []myArray;
             myArray = newArray;
         }
-        myArray[myCapacity] = it;
-        mySize++;
+        myArray[mySize] = it;
+        myCapacity++;
     }
-    myCapacity++;
+    mySize++;
 
+}
+
+Item PyList::getItem(unsigned index) const{
+    if(index < 0 || index > mySize){
+        throw invalid_argument("You silly goose! This index is invalid.");
+    }
+    return myArray[index];
+
+}
+
+
+void PyList::setItem(unsigned index, Item it){
+    if(index < 0 || index > mySize){
+        throw invalid_argument("You silly goose! This index is invalid.");
+    }
+    myArray[index] = it;
+
+}
+
+ostream &operator<<(ostream &out, PyList p){
+    out << "[";
+    for(unsigned i = 0 ; i < p.getSize(); i++){
+        out << p.getItem(i) << ", ";
+    }
+    out << "]";
+    return out;
+}
+
+
+Item PyList::operator[](unsigned index) const{
+    return getItem(index);
+}
+
+void PyList::removeAt(unsigned index){
+    if(index < 0 || index > mySize){
+        throw invalid_argument("You silly goose! This index is invalid.");
+    }
+    for(unsigned i=index; i < mySize; i++){
+        myArray[i] = myArray[i+1];
+    }
+    mySize--;
 }

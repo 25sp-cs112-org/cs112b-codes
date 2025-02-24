@@ -1,3 +1,6 @@
+#include <iostream>
+
+using namespace std;
 
 typedef int Item;
 
@@ -13,9 +16,19 @@ class PyList{
 
         // getters
         unsigned getSize() const;
+        Item getItem(unsigned index) const;
+
+        // setters
+        void setItem(unsigned index, Item it);
+
+        Item operator[](unsigned index) const;
+
+        void removeAt(unsigned index);
 
     private:
         Item *myArray;
-        unsigned mySize;
-        unsigned myCapacity;
+        unsigned mySize;     // the size of the List
+        unsigned myCapacity; // the size of the array
 };
+
+ostream &operator<<(ostream &out, PyList p);
