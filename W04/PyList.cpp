@@ -38,7 +38,7 @@ PyList::PyList(PyList & other){
 
 PyList::~PyList(){
     delete []myArray;
-    cout << "I'm dyiiiiiiiiiing!!" << endl;
+    // cout << "I'm dyiiiiiiiiiing!!" << endl;
 }
 
 // getters
@@ -54,17 +54,18 @@ void PyList::append(Item it){
     else{
         if(myCapacity == 0){
             myArray = new Item[1];
+            myCapacity = 1;
         }
         else{
-            Item *newArray = new Item[myCapacity+1];
+            Item *newArray = new Item[myCapacity*2];
             for(unsigned i=0; i < mySize; i++){
                 newArray[i] = myArray[i];
             }
             delete []myArray;
             myArray = newArray;
+            myCapacity*=2;
         }
         myArray[mySize] = it;
-        myCapacity++;
     }
     mySize++;
 

@@ -95,3 +95,12 @@ TEST_CASE("removeAt"){
     REQUIRE(p[1] == 30);
     REQUIRE(p.getSize() == 3);
 }
+
+TEST_CASE("Fraol's test"){
+    PyList p;
+    p.append(10);
+    p.append(20);
+    p.append(30);
+    p.append(40);
+    p.testFraol(0);
+}

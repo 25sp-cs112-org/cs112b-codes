@@ -25,6 +25,13 @@ class PyList{
 
         void removeAt(unsigned index);
 
+        void testFraol(unsigned index){
+            cout << myArray << endl;
+            cout << *(&myArray) << endl;
+            cout << *(&myArray[0]) << endl;
+
+        }
+
     private:
         Item *myArray;
         unsigned mySize;     // the size of the List
