@@ -1,33 +1,34 @@
 
 
-typedef Item int;
+typedef int Item;
 
 class BST{
-    public:
-        BST();
-        ~BST();
-        bool isEmpty() const;
-        int getSize() const;
-        void addItem(const Item &it);
-        Item & removeItem(const Item &it);
-        Node & search(const Item &it);
 
     private:
         class Node {
             public:
-                Node();
-                ~Node();
+                Node(Item &it);
+                // ~Node();
                 Item getItem() const;
-                void addNode(const Item &it);
+                void addNode(Item &it);
 
             private:
-                Node * left;
-                Node * right;
-                Item item;
+                Node * leftChild;
+                Node * rightChild;
+                Item myItem;
         };
 
-        Node * root;
+        Node * myRoot;
         int mySize;
 
-
+    public:
+        BST();
+        BST(Item it);
+        // ~BST();
+        void insert(Item it);
+        bool isEmpty() const;
+        int getSize() const;
+        Item & removeItem(const Item &it);
+        void printBST();
+        // Node & search(const Item &it);
 };
